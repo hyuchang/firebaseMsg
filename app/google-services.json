@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "400155996933",
+    "firebase_url": "https://firemessenger-e5bb1.firebaseio.com",
+    "project_id": "firemessenger-e5bb1",
+    "storage_bucket": "firemessenger-e5bb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400155996933:android:539498313c3dba85",
+        "android_client_info": {
+          "package_name": "firebase.hucloud.com.firemessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400155996933-obsnf6t1alcrop0ovku522cutb48ouam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLjdS2G8XP9py0hreYWElXcxtUxQJqWic"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
