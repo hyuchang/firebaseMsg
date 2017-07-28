@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_chat"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:weightSum="5"
+        tools:context="firebase.hucloud.com.firemessenger.views.ChatActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:id="@+id/chat_area"
+                  android:orientation="vertical"
+                  android:layout_weight="5"
+                  android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/chat_rec_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        <ImageView
+                android:src="@mipmap/camera_icon"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <EditText
+                android:id="@+id/edtContent"
+                android:padding="5dp"
+                android:layout_weight="8"
+                android:background="#fff"
+                android:layout_width="0dp"
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:hint="메시지"
+                android:layout_height="match_parent"/>
+
+        <ImageView
+                android:padding="5dp"
+                android:id="@+id/senderBtn"
+                android:layout_weight="1"
+                android:src="@mipmap/send_message"
+                android:layout_width="0dp"
+                android:enabled="false"
+                android:clickable="true"
+                android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="firebase.hucloud.com.firemessenger.views.RoomFragment">
+
+    <LinearLayout
+            android:id="@+id/search_area"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+        <EditText
+                android:id="@+id/edtContent"
+                android:padding="5dp"
+                android:layout_weight="7"
+                android:background="#fff"
+                android:layout_width="0dp"
+                android:inputType="textMultiLine"
+                android:maxLines="1"
+                android:hint="친구 이메일 검색"
+                android:layout_height="match_parent"/>
+
+        <Button
+                android:padding="5dp"
+                android:id="@+id/findBtn"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="찾기" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/friendRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</LinearLayout>

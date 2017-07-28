@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.1_d85d9eaff687a390505abdd94925b54336f08a01/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.1_bdf6edc508f588258da94108aeb02aa87a05f735/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.1_cb37c49d265d57abaeda1f928b1b79f105fd3f38/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="72f1f55d7ec3f5a9a07f6039da0d37fa2d58da2f">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ca2cfbb5bbedd3656aeaf214e991bd490d7a445b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.1_46316c3638cf99e24db484fdf6df6a4ee8d27ab5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_490f8944332eb2860a6a8a4f534744404b322fe0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.0.0-RC1/c425e31eda1069f978a0e823ad50e567ab422656/gifdecoder-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c425e31eda1069f978a0e823ad50e567ab422656">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/gifdecoder-4.0.0-RC1_11aab308964a2057e558f58b6e6e189a8fae61ec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_c1bc626c31bf60b4ae598bb374cb388faf6a635b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.0.0-RC1/84c524dcd1a3088edd5560a8ac176eae1317f770/annotations-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="84c524dcd1a3088edd5560a8ac176eae1317f770">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-4.0.0-RC1_559bbe25cc6b613c008e7ae170ca7b9471d62fc3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/design/25.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.0.1_c10b7d0057a397c5037969a1b8624bcd2f28e8e0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/Documents/sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_110b9a527599d2a8404e55ead28997b53b28eadb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.1_62768a5d26d1f3705a3650de298dd748b5dcee92/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.1_7a52fd99ae994901adadf2257db90c00f53010fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.0.0-RC1/7baec7d5132e7343100a99630a56a6584a33addc/glide-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7baec7d5132e7343100a99630a56a6584a33addc">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-4.0.0-RC1_62cd293dfd8ffca0b9acac3ef6e0ea5d6f4df0da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="297d4bcf6ed4e747a1bf7d0d094a2d911a8d3a8e">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.0.1_a162555b611f4fa68144f24b7851c445cbe8de04/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.5.1_1540570b6b29d1304d13802452803b01de08f64b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.0.0-RC1/1b4bba8f8d3df8db064c875c043c01e9ca3cdee9/disklrucache-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1b4bba8f8d3df8db064c875c043c01e9ca3cdee9">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/disklrucache-4.0.0-RC1_701141f3619e092f419e8986c60eeb69daf00db6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.1_4ade7173f7be9fcd19f71705e17cb80785c3127d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9407058857815882fca2a102d04d6bb283a0e724">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f43492393e0b9d499dbca2cc56e0ea704ebb22c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.5.1_31213e1ef87d00931f85a927084946c86660ac53/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firemessenger/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.0.1_ae82ee3675b1262d36652e01a667c83feb37c791/classes.dex" />
+    </item>
+
+</items>
