@@ -19,6 +19,12 @@
             android:layout_marginBottom="8dp"
             android:visibility="gone"/>
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hello Fire Messenger!!"> </TextView>
+    <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_sign_in_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"  />
+
 
 </LinearLayout>
