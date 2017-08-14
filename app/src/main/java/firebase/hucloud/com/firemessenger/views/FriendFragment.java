@@ -1,10 +1,11 @@
 package firebase.hucloud.com.firemessenger.views;
 
 
-import android.app.PendingIntent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 import firebase.hucloud.com.firemessenger.R;
+import firebase.hucloud.com.firemessenger.adapters.FriendListAdapter;
 import firebase.hucloud.com.firemessenger.models.User;
 
 import java.util.Iterator;
@@ -32,6 +34,9 @@ public class FriendFragment extends Fragment {
     @BindView(R.id.edtContent)
     EditText edtEmail;
 
+    @BindView(R.id.friendRecyclerView)
+    RecyclerView mRecyclerView;
+
     private FirebaseUser mFirebaseUser;
 
     private FirebaseAuth mFirebaseAuth;
@@ -40,6 +45,10 @@ public class FriendFragment extends Fragment {
 
     private DatabaseReference mFriendsDBRef;
     private DatabaseReference mUserDBRef;
+
+    private FriendListAdapter friendListAdapter;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +62,16 @@ public class FriendFragment extends Fragment {
 
         mFriendsDBRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("friends");
         mUserDBRef = mFirebaseDb.getReference("users");
+
+        // 1. 리얼타임데이터베이스에서 나의 친구목록을 리스터를 통하여 데이터를 가져옵니다.
+        addFriendListener();
+        // 2. 가져온 데이터를 통해서 recyclerview의 아답터에 아이템을 추가 시켜줍니다. (UI)갱신
+        friendListAdapter = new FriendListAdapter();
+        mRecyclerView.setAdapter(friendListAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        // 3. 아이템별로 (친구) 클릭이벤트를 주어서 선택한 친구와 대화를 할 수 있도록 한다.
 
 
         return friendView;
@@ -155,13 +174,44 @@ public class FriendFragment extends Fragment {
 
             }
         });
-
-
         // 5. users/{myuid}/friends/{someone_uid}/상대 정보를 등록하고
+    }
 
+    private void addFriendListener(){
 
+        mFriendsDBRef.addChildEventListener(new ChildEventListener() {
 
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                User friend = dataSnapshot.getValue(User.class);
+                // 2. 가져온 데이터를 통해서 recyclerview의 아답터에 아이템을 추가 시켜줍니다. (UI)갱신
+                drawUI(friend);
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void drawUI(User friend){
+        friendListAdapter.addItem(friend);
 
     }
 

@@ -18,9 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.*;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.*;
 import firebase.hucloud.com.firemessenger.R;
 import firebase.hucloud.com.firemessenger.models.User;
 
@@ -121,21 +119,36 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setUid(firebaseUser.getUid());
                                 if ( firebaseUser.getPhotoUrl() != null )
                                     user.setProfileUrl(firebaseUser.getPhotoUrl().toString());
-                                mUserRef.child(user.getUid()).setValue(user, new DatabaseReference.CompletionListener() {
-                                    @Override
-                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                                        if ( databaseError == null ) {
+                                mUserRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if ( !dataSnapshot.exists() ) {
+                                            mUserRef.child(user.getUid()).setValue(user, new DatabaseReference.CompletionListener() {
+                                                @Override
+                                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                                                    if ( databaseError == null ) {
+                                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                        finish();
+                                                    }
+                                                }
+                                            });
+                                        } else {
                                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                             finish();
-                                            Bundle eventBundle = new Bundle();
-                                            eventBundle.putString("email", user.getEmail());
-                                            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, eventBundle);
-
                                         }
+
+                                        Bundle eventBundle = new Bundle();
+                                        eventBundle.putString("email", user.getEmail());
+                                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, eventBundle);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
                                     }
                                 });
-
 
                             } else {
                                 Snackbar.make(mProgressView, "로그인에 실패하였습니다.", Snackbar.LENGTH_LONG).show();
