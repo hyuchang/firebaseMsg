@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
                 Fragment currentFragment = mPageAdapter.getItem(mViewPager.getCurrentItem());
                 if (currentFragment instanceof FriendFragment) {
                     ((FriendFragment) currentFragment).toggleSearchBar();
+                } else {
+                    // 친구 탭으로 이동
+                    mViewPager.setCurrentItem(2, true);
+                    // 체크박스가 보일수 있도록 처리
+                    FriendFragment friendFragment = (FriendFragment) mPageAdapter.getItem(1);
+                    friendFragment.toggleSelectionMode();
+
                 }
             }
         });
