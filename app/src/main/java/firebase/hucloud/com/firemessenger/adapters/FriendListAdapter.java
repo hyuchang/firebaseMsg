@@ -70,7 +70,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Fr
         int i = 0;
         for ( User user : friendList) {
             if ( user.isSelection() ) {
-                selecteUids[i] = user.getUid();
+                selecteUids[i++] = user.getUid();
             }
         }
         return selecteUids;
