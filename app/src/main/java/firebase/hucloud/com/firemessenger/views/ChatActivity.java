@@ -89,7 +89,7 @@ public class ChatActivity extends AppCompatActivity {
                 //unreadCount 셋팅하기 위한 대화 상대의 수를 가져 옵니다.
                 long memberCount = dataSnapshot.getChildrenCount();
                 textMessage.setUnreadCount((int)memberCount - 1);
-                mChatMessageRef.setValue(textMessage, new DatabaseReference.CompletionListener() {
+                mChatMessageRef.child(textMessage.getMessageId()).setValue(textMessage, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         Iterator<DataSnapshot> memberIterator = dataSnapshot.getChildren().iterator();
