@@ -18,6 +18,7 @@ public class Message {
     private MessageType messageType;
     private List<String> readUserList;
 
+
     public enum MessageType {
         TEXT, PHOTO
     }

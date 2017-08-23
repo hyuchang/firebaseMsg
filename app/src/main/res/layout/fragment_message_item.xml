@@ -5,6 +5,7 @@
               android:layout_height="wrap_content">
     <LinearLayout
             android:id="@+id/yourChatArea"
+            android:visibility="gone"
             android:padding="2dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -67,6 +68,7 @@
             android:id="@+id/myChatArea"
             android:padding="2dp"
             android:layout_gravity="right"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <LinearLayout

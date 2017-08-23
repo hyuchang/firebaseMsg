@@ -1,7 +1,11 @@
 package firebase.hucloud.com.firemessenger.views;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,10 +16,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 import firebase.hucloud.com.firemessenger.R;
-import firebase.hucloud.com.firemessenger.models.Chat;
-import firebase.hucloud.com.firemessenger.models.Message;
-import firebase.hucloud.com.firemessenger.models.TextMessage;
-import firebase.hucloud.com.firemessenger.models.User;
+import firebase.hucloud.com.firemessenger.adapters.MessageListAdapter;
+import firebase.hucloud.com.firemessenger.models.*;
+import org.w3c.dom.Text;
 
 import java.util.*;
 
@@ -29,6 +32,14 @@ public class ChatActivity extends AppCompatActivity {
     @BindView(R.id.edtContent)
     EditText mMessageText;
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @BindView(R.id.chat_rec_view)
+    RecyclerView mChatRecyclerView;
+
+    private MessageListAdapter messageListAdapter;
+
     private FirebaseDatabase mFirebaseDb;
 
     private DatabaseReference mChatRef;
@@ -37,6 +48,8 @@ public class ChatActivity extends AppCompatActivity {
     private DatabaseReference mUserRef;
 
     private FirebaseUser mFirebaseUser;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +60,118 @@ public class ChatActivity extends AppCompatActivity {
         mFirebaseDb = FirebaseDatabase.getInstance();
         mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         mUserRef = mFirebaseDb.getReference("users");
+        mToolbar.setTitleTextColor(Color.WHITE);
+        if ( mChatId != null ) {
+            mChatRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("chats").child(mChatId);
+            mChatMessageRef = mFirebaseDb.getReference("chat_messages").child(mChatId);
+            mChatMemeberRef = mFirebaseDb.getReference("chat_members").child(mChatId);
+            mChatRef.child("title").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String title = dataSnapshot.getValue(String.class);
+                    mToolbar.setTitle(title);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            initTotalunreadCount();
+        } else {
+            mChatRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("chats");
+        }
+        messageListAdapter = new MessageListAdapter();
+        mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mChatRecyclerView.setAdapter(messageListAdapter);
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeMessageListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mChatId != null) {
+            addMessageListener();
+        }
+
+    }
+
+    private void initTotalunreadCount(){
+        mChatRef.child("totalUnreadCount").setValue(0);
+    }
+
+    private void addMessageListener(){
+        mChatMessageRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                // 신규메세지
+                Message item = dataSnapshot.getValue(Message.class);
+                // 내가 메세지를 읽었는지 부터 확인 하고
+                // 안읽었다면
+                // readUserList 내 uid를 추가 하고
+                // 읽었다면 메세지를 로딩 해주는 기능을 구현해보도록 하겠습니다.
+                List<String> readUserList = item.getReadUserList();
+                if ( readUserList != null ) {
+                    if ( !readUserList.contains(mFirebaseUser.getUid())) {
+                        readUserList.add(mFirebaseUser.getUid());
+
+                        // user>{sss}>chats
+
+
+
+
+                    }
+
+                }
+
+
+
+
+
+                if ( item.getMessageType() == Message.MessageType.TEXT ) {
+                    TextMessage textMessage = dataSnapshot.getValue(TextMessage.class);
+                    messageListAdapter.addItem(textMessage);
+                } else if ( item.getMessageType() == Message.MessageType.PHOTO ){
+                    PhotoMessage photoMessage = dataSnapshot.getValue(PhotoMessage.class);
+                    messageListAdapter.addItem(photoMessage);
+                }
+                // 읽음 처리를.
+                // ui
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                // 변경된 메세지 ( unreadCount)
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void removeMessageListener() {
+
+    }
+
 
     @OnClick(R.id.senderBtn)
     public void onSendEvent(View v){
@@ -77,6 +200,7 @@ public class ChatActivity extends AppCompatActivity {
         textMessage.setChatId(mChatId);
         textMessage.setMessageId(messageId);
         textMessage.setMessageType(Message.MessageType.TEXT);
+        textMessage.setMessageUser(new User(mFirebaseUser.getUid(), mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString()));
         textMessage.setReadUserList(Arrays.asList(new String[]{mFirebaseUser.getUid()}));
         String [] uids = getIntent().getStringArrayExtra("uids");
         if ( uids != null ) {
@@ -121,9 +245,6 @@ public class ChatActivity extends AppCompatActivity {
                                         }
                                     });
                             }
-
-
-
                         }
                     }
                 });
@@ -210,20 +331,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
         // users > {uid} > chats > {chat_uid}
-
-
     }
 
 

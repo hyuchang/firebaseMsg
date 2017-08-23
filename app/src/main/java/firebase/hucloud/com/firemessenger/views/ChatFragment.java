@@ -1,5 +1,6 @@
 package firebase.hucloud.com.firemessenger.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 import firebase.hucloud.com.firemessenger.R;
 import firebase.hucloud.com.firemessenger.adapters.ChatListAdapter;
+import firebase.hucloud.com.firemessenger.customviews.RecyclerViewItemClickListener;
 import firebase.hucloud.com.firemessenger.models.Chat;
 import firebase.hucloud.com.firemessenger.models.User;
 
@@ -58,6 +60,15 @@ public class ChatFragment extends Fragment {
         mChatRecyclerView.setAdapter(mChatListAdapter);
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mChatRecyclerView.addOnItemTouchListener( new RecyclerViewItemClickListener(getContext(), new RecyclerViewItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Chat chat = mChatListAdapter.getItem(position);
+                Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
+                chatIntent.putExtra("chat_id", chat.getChatId());
+                startActivity(chatIntent);
+            }
+        }));
         addChatListener();
         return chatView;
     }
@@ -83,20 +94,21 @@ public class ChatFragment extends Fragment {
                         int loopCount = 1;
                         while( memberIterator.hasNext()) {
                             User member = memberIterator.next().getValue(User.class);
-                            memberStringBuffer.append(member.getName());
-
-                            if ( loopCount < memberCount ) {
-                                memberStringBuffer.append(", ");
+                            if ( !mFirebaseUser.getUid().equals(member.getUid())) {
+                                memberStringBuffer.append(member.getName());
+                                if ( memberCount - loopCount > 1 ) {
+                                    memberStringBuffer.append(", ");
+                                }
                             }
-
                             if ( loopCount == memberCount ) {
                                 // users/uid/chats/{chat_id}/title
                                 String title = memberStringBuffer.toString();
-                                if (chatRoom.getTitle() != null) {
-                                    if ( !chatRoom.getTitle().equals(title)) {
-                                        chatDataSnapshot.getRef().child("title").setValue(title);
-                                    }
+                                if ( chatRoom.getTitle() == null ) {
+                                    chatDataSnapshot.getRef().child("title").setValue(title);
+                                } else if (!chatRoom.getTitle().equals(title)){
+                                    chatDataSnapshot.getRef().child("title").setValue(title);
                                 }
+                                chatRoom.setTitle(title);
                                 drawUI( chatRoom );
                             }
                             loopCount++;
@@ -108,8 +120,6 @@ public class ChatFragment extends Fragment {
 
                     }
                 });
-
-
                 // 기존의 방제목과 방 멤버의 이름들을 가져와서 타이틀화 시켰을때 같지 않은 경우 방제목을 업데이트 시켜줍니다.
             }
 
