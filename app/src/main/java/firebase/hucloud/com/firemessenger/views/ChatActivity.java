@@ -90,7 +90,9 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        removeMessageListener();
+        if (mChatId != null) {
+            removeMessageListener();
+        }
     }
 
     @Override
@@ -99,77 +101,115 @@ public class ChatActivity extends AppCompatActivity {
         if (mChatId != null) {
             addMessageListener();
         }
-
     }
 
     private void initTotalunreadCount(){
         mChatRef.child("totalUnreadCount").setValue(0);
     }
 
+    ChildEventListener mMessageEventListener = new ChildEventListener() {
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            // 신규메세지
+            Message item = dataSnapshot.getValue(Message.class);
+
+            // 읽음 처리
+            // chat_messages > {chat_id} > {message_id} > readUserList
+            // 내가 존재 하는지를 확인
+            // 존재한다면
+            // 존재 하지 않는다면
+            // chat_messages > {chat_id} > {message_id} >  unreadCount -= 1
+            // readUserList에 내 uid 추가
+            List<String> readUserUIDList = item.getReadUserList();
+            if ( readUserUIDList != null ) {
+                if ( !readUserUIDList.contains(mFirebaseUser.getUid())) {
+                    // chat_messages > {chat_id} > {message_id} >  unreadCount -= 1
+
+                    // messageRef.setValue();
+                    dataSnapshot.getRef().runTransaction(new Transaction.Handler() {
+                        @Override
+                        public Transaction.Result doTransaction(MutableData mutableData) {
+                            Message mutableMessage = mutableData.getValue(Message.class);
+                            // readUserList에 내 uid 추가
+                            // unreadCount -= 1
+
+                            List<String> mutabledReadUserList = mutableMessage.getReadUserList();
+                            mutabledReadUserList.add(mFirebaseUser.getUid());
+                            int mutableUnreadCount = mutableMessage.getUnreadCount() - 1;
+
+                            if ( mutableMessage.getMessageType() == Message.MessageType.PHOTO) {
+                                PhotoMessage mutablePhotoMessage = mutableData.getValue(PhotoMessage .class);
+                                mutablePhotoMessage.setReadUserList(mutabledReadUserList);
+                                mutablePhotoMessage.setUnreadCount(mutableUnreadCount);
+                                mutableData.setValue(mutablePhotoMessage);
+                            } else {
+                                TextMessage mutableTextMessage = mutableData.getValue(TextMessage.class);
+                                mutableTextMessage.setReadUserList(mutabledReadUserList);
+                                mutableTextMessage.setUnreadCount(mutableUnreadCount);
+                                mutableData.setValue(mutableTextMessage);
+                            }
+                            return Transaction.success(mutableData);
+                        }
+
+                        @Override
+                        public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+                            initTotalunreadCount();
+                        }
+                    });
+                }
+            }
+
+            // ui
+            if ( item.getMessageType() == Message.MessageType.TEXT ) {
+                TextMessage textMessage = dataSnapshot.getValue(TextMessage.class);
+                messageListAdapter.addItem(textMessage);
+            } else if ( item.getMessageType() == Message.MessageType.PHOTO ){
+                PhotoMessage photoMessage = dataSnapshot.getValue(PhotoMessage.class);
+                messageListAdapter.addItem(photoMessage);
+            }
+        }
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            // 변경된 메세지 ( unreadCount)
+            // 아답터쪽에 변경된 메세지데이터를 전달하고
+            // 메시지 아이디 번호로 해당 메세지의 위치를 알아내서
+            // 알아낸 위치값을 이용해서 메세지 리스트의 값을 변경할 예정입니다.
+            Message item = dataSnapshot.getValue(Message.class);
+
+            if ( item.getMessageType() == Message.MessageType.TEXT ) {
+                TextMessage textMessage = dataSnapshot.getValue(TextMessage.class);
+                messageListAdapter.updateItem(textMessage);
+            } else if ( item.getMessageType() == Message.MessageType.PHOTO ){
+                PhotoMessage photoMessage = dataSnapshot.getValue(PhotoMessage.class);
+                messageListAdapter.updateItem(photoMessage);
+            }
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+        }
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
+
+
     private void addMessageListener(){
-        mChatMessageRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                // 신규메세지
-                Message item = dataSnapshot.getValue(Message.class);
-                // 내가 메세지를 읽었는지 부터 확인 하고
-                // 안읽었다면
-                // readUserList 내 uid를 추가 하고
-                // 읽었다면 메세지를 로딩 해주는 기능을 구현해보도록 하겠습니다.
-                List<String> readUserList = item.getReadUserList();
-                if ( readUserList != null ) {
-                    if ( !readUserList.contains(mFirebaseUser.getUid())) {
-                        readUserList.add(mFirebaseUser.getUid());
-
-                        // user>{sss}>chats
-
-
-
-
-                    }
-
-                }
-
-
-
-
-
-                if ( item.getMessageType() == Message.MessageType.TEXT ) {
-                    TextMessage textMessage = dataSnapshot.getValue(TextMessage.class);
-                    messageListAdapter.addItem(textMessage);
-                } else if ( item.getMessageType() == Message.MessageType.PHOTO ){
-                    PhotoMessage photoMessage = dataSnapshot.getValue(PhotoMessage.class);
-                    messageListAdapter.addItem(photoMessage);
-                }
-                // 읽음 처리를.
-                // ui
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                // 변경된 메세지 ( unreadCount)
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        mChatMessageRef.addChildEventListener(mMessageEventListener);
     }
 
     private void removeMessageListener() {
-
+        mChatMessageRef.removeEventListener(mMessageEventListener);
     }
 
 

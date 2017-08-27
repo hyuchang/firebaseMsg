@@ -39,6 +39,26 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         notifyDataSetChanged();
     }
 
+    public void updateItem(Message item) {
+        int position = getItemPosition(item.getMessageId());
+        if ( position < 0) {
+            return;
+        }
+        mMessageList.set(position, item);
+        notifyItemChanged(position);
+    }
+
+    private int getItemPosition(String messageId){
+        int position = 0;
+        for (Message message : mMessageList ) {
+            if ( message.getMessageId().equals(messageId)) {
+                return position;
+            }
+            position++;
+        }
+        return -1;
+    }
+
     public Message getItem(int position) {
         return mMessageList.get(position);
     }
@@ -85,6 +105,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
             if ( item.getUnreadCount() > 0 ) {
                 holder.sendUnreadCount.setText(String.valueOf(item.getUnreadCount()));
+            } else {
+                holder.sendUnreadCount.setText("");
             }
             holder.sendDate.setText(messageDateFormat.format(item.getMessageDate()));
             holder.yourArea.setVisibility(View.GONE);
@@ -111,6 +133,8 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
             if ( item.getUnreadCount() > 0 ) {
                 holder.rcvUnreadCount.setText(String.valueOf(item.getUnreadCount()));
+            }  else {
+                holder.rcvUnreadCount.setText("");
             }
 
             if ( item.getMessageUser().getProfileUrl() != null ) {
