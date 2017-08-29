@@ -34,6 +34,14 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatHo
         notifyDataSetChanged();
     }
 
+    public void removeItem(Chat chat) {
+        int position = getItemPosition(chat.getChatId());
+        if ( position > -1 ) {
+            mChatList.remove(position);
+            notifyDataSetChanged();
+        }
+    }
+
     public void updateItem(Chat chat) {
         int changedItemPosition = getItemPosition(chat.getChatId());
         if ( changedItemPosition > -1 ) {
