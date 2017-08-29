@@ -325,8 +325,9 @@ public class ChatActivity extends AppCompatActivity {
         // 4. 4.  첫 메세지 전송
 
         final Chat chat = new Chat();
-        mChatRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("chats");
+
         mChatId = mChatRef.push().getKey();
+        mChatRef = mChatRef.child(mChatId);
         mChatMemeberRef = mFirebaseDb.getReference("chat_members").child(mChatId);
         chat.setChatId(mChatId);
         chat.setCreateDate(new Date());
@@ -355,6 +356,7 @@ public class ChatActivity extends AppCompatActivity {
                                     dataSnapshot.getRef().child("chats").child(mChatId).setValue(chat);
                                     if ( !isSentMessage ) {
                                         sendMessage();
+                                        addMessageListener();
                                         isSentMessage = true;
                                     }
 
@@ -368,11 +370,11 @@ public class ChatActivity extends AppCompatActivity {
 
                 }
             });
-
-
         }
         // users > {uid} > chats > {chat_uid}
     }
+
+
 
 
 }

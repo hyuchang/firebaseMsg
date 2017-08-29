@@ -2,12 +2,14 @@ package firebase.hucloud.com.firemessenger.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,8 +19,10 @@ import firebase.hucloud.com.firemessenger.R;
 import firebase.hucloud.com.firemessenger.adapters.ChatListAdapter;
 import firebase.hucloud.com.firemessenger.customviews.RecyclerViewItemClickListener;
 import firebase.hucloud.com.firemessenger.models.Chat;
+import firebase.hucloud.com.firemessenger.models.Message;
 import firebase.hucloud.com.firemessenger.models.User;
 
+import java.sql.SQLOutput;
 import java.util.Iterator;
 
 /**
@@ -44,6 +48,10 @@ public class ChatFragment extends Fragment {
 
     private ChatListAdapter mChatListAdapter;
 
+    public static String joinChatId = "";
+
+    public static final int JOIN_ROOM_REQUEST_CODE = 100;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +65,7 @@ public class ChatFragment extends Fragment {
         mChatRef = mFirebaseDatase.getReference("users").child(mFirebaseUser.getUid()).child("chats");
         mChatMemberRef = mFirebaseDatase.getReference("chat_members");
         mChatListAdapter = new ChatListAdapter();
+        mChatListAdapter.setFragment(this);
         mChatRecyclerView.setAdapter(mChatListAdapter);
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -66,7 +75,8 @@ public class ChatFragment extends Fragment {
                 Chat chat = mChatListAdapter.getItem(position);
                 Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
                 chatIntent.putExtra("chat_id", chat.getChatId());
-                startActivity(chatIntent);
+                joinChatId = chat.getChatId();
+                startActivityForResult(chatIntent, JOIN_ROOM_REQUEST_CODE);
             }
         }));
         addChatListener();
@@ -125,9 +135,29 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                // 변경된 방의 정보를 수신
                 // 나의 내가 보낸 메시지가 아닌경우와 마지막 메세지가 수정이 되었다면 -> 노티출력
 
+                // 변경된 방의 정보를 수신
+                // 변경된 포지션 확인. ( 채팅방 아이디로 기존의 포지션을 확인 합니다)
+                // 그 포지션의 아이템중 unreadCount 변경이 되었다면 unreadCount 변경
+                // lastMessage 입니다. last 메세지의 시각과 변경된 메세지의 last메세지 시간이 다르다면 -> 노티피케이션을 출력햅니다.
+                // 현재 액티비티가 ChatActivity 이고 chat_id 가 같다면 노티는 해주지 않습니다.
+
+                Chat updatedChat = dataSnapshot.getValue(Chat.class);
+                Chat oldChat = mChatListAdapter.getItem(updatedChat.getChatId());
+                mChatListAdapter.updateItem(updatedChat);
+
+                if ( updatedChat.getLastMessage() == null || oldChat.getLastMessage() == null)
+                    return;
+
+                if ( !updatedChat.getLastMessage().getMessageUser().getUid().equals(mFirebaseUser.getUid())) {
+                    if ( updatedChat.getLastMessage().getMessageDate().getTime() > oldChat.getLastMessage().getMessageDate().getTime() ) {
+                        if ( !updatedChat.getChatId().equals(joinChatId)) {
+                            // 노티피케이션 알림
+                            Toast.makeText(getActivity(), updatedChat.getLastMessage().getMessageText(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
             }
 
             @Override
@@ -152,4 +182,63 @@ public class ChatFragment extends Fragment {
         mChatListAdapter.addItem(chat);
     }
 
+    public void leaveChat(final Chat chat) {
+        Snackbar.make(getView(), "선택된 대화방을 나가시겠습니까?", Snackbar.LENGTH_LONG).setAction("예", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 나의 대화방 목록에서 제거
+                // users/{uid}/chats
+                mChatRef.child(chat.getChatId()).removeValue(new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        // 채팅 멤버 목록에서 제거
+                        // chat_members/{chat_id}/{user_id} 제거
+                        mChatMemberRef
+                                .child(chat.getChatId())
+                                .child(mFirebaseUser.getUid())
+                                .removeValue(new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                // 메세지 unreadCount에서도 제거
+                                // getReadUserList 내가 있다면 읽어진거니깐 pass
+                                // 없다면 unreadCount - 1
+                                // messages/{chat_id}
+                                // 모든 메세지를 가져온다.
+                                // 가져와서 루프를 통해서 내가 읽었는지 여부 판단.
+                                mFirebaseDatase.getReference("messages").child(chat.getChatId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        Iterator<DataSnapshot> messageIterator = dataSnapshot.getChildren().iterator();
+
+                                        while ( messageIterator.hasNext()) {
+                                            DataSnapshot messageSnapshot = messageIterator.next();
+                                            Message currentMessage = messageSnapshot.getValue(Message.class);
+                                            if ( !currentMessage.getReadUserList().contains(mFirebaseUser.getUid())) {
+                                                // message
+                                                messageSnapshot.child("unreadCount").getRef().setValue(currentMessage.getUnreadCount() - 1);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                });
+            }
+        }).show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( requestCode == JOIN_ROOM_REQUEST_CODE ) {
+            joinChatId = "";
+        }
+    }
 }
