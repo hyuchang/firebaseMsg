@@ -1,5 +1,6 @@
 package firebase.hucloud.com.firemessenger.views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -9,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +20,7 @@ import firebase.hucloud.com.firemessenger.adapters.ChatListAdapter;
 import firebase.hucloud.com.firemessenger.customviews.RecyclerViewItemClickListener;
 import firebase.hucloud.com.firemessenger.models.Chat;
 import firebase.hucloud.com.firemessenger.models.Message;
+import firebase.hucloud.com.firemessenger.models.Notification;
 import firebase.hucloud.com.firemessenger.models.User;
 
 import java.util.Iterator;
@@ -39,9 +40,13 @@ public class ChatFragment extends Fragment {
 
     private ChatListAdapter mChatListAdapter;
 
-    public static String joinChatId = "";
+    public static String JOINED_ROOM = "";
 
     public static final int JOIN_ROOM_REQUEST_CODE = 100;
+
+    private Notification mNotification;
+
+    private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,10 +71,12 @@ public class ChatFragment extends Fragment {
                 Chat chat = mChatListAdapter.getItem(position);
                 Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
                 chatIntent.putExtra("chat_id", chat.getChatId());
-                joinChatId = chat.getChatId();
                 startActivityForResult(chatIntent, JOIN_ROOM_REQUEST_CODE);
             }
         }));
+        mContext = getActivity();
+        mNotification = new Notification(mContext);
+
         addChatListener();
         return chatView;
     }
@@ -77,7 +84,6 @@ public class ChatFragment extends Fragment {
 
     private void addChatListener() {
         mChatRef.addChildEventListener(new ChildEventListener() {
-
             @Override
             public void onChildAdded(final DataSnapshot chatDataSnapshot, String s) {
                 // ui 갱신 시켜주는 메서드로 방의 정보를 전달.
@@ -97,24 +103,27 @@ public class ChatFragment extends Fragment {
                 // 현재 액티비티가 ChatActivity 이고 chat_id 가 같다면 노티는 해주지 않습니다.
 
                 // ui 갱신 시켜주는 메서드로 방의 정보를 전달.
-
+                // totalunread의 변경, title의 변경, lastmessage변경시에 호출이 됩니다.
                 // 방에 대한 정보를 얻어오고
                 drawUI(chatDataSnapshot, DrawType.UPDATE);
                 final Chat updatedChat = chatDataSnapshot.getValue(Chat.class);
 
-                Chat oldChat = mChatListAdapter.getItem(updatedChat.getChatId());
-
-                if ( updatedChat.getLastMessage() == null || oldChat.getLastMessage() == null)
-                    return;
-
-                if ( !updatedChat.getLastMessage().getMessageUser().getUid().equals(mFirebaseUser.getUid())) {
-                    if ( updatedChat.getLastMessage().getMessageDate().getTime() > oldChat.getLastMessage().getMessageDate().getTime() ) {
-                        if ( !updatedChat.getChatId().equals(joinChatId)) {
+                if (updatedChat.getLastMessage() != null ) {
+                    if ( !updatedChat.getLastMessage().getMessageUser().getUid().equals(mFirebaseUser.getUid())) {
+                        if ( !updatedChat.getChatId().equals(JOINED_ROOM)) {
                             // 노티피케이션 알림
-                            Toast.makeText(getActivity(), updatedChat.getLastMessage().getMessageText(), Toast.LENGTH_LONG).show();
+                            Intent chatIntent = new Intent(mContext, ChatActivity.class);
+                            chatIntent.putExtra("chat_id", updatedChat.getChatId());
+                            mNotification
+                                    .setData(chatIntent)
+                                    .setTitle(updatedChat.getLastMessage().getMessageUser().getName())
+                                    .setText(updatedChat.getLastMessage().getMessageText())
+                                    .notification();
+
                         }
                     }
                 }
+
             }
 
             @Override
@@ -282,7 +291,7 @@ public class ChatFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ( requestCode == JOIN_ROOM_REQUEST_CODE ) {
-            joinChatId = "";
+            JOINED_ROOM = "";
         }
     }
 

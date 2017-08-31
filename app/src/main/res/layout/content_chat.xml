@@ -40,6 +40,7 @@
             android:layout_height="50dp">
 
         <ImageView
+                android:id="@+id/photoSend"
                 android:src="@mipmap/camera_icon"
                 android:layout_weight="1"
                 android:layout_width="0dp"

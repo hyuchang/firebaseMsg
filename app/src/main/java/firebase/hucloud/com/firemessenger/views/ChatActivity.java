@@ -1,6 +1,9 @@
 package firebase.hucloud.com.firemessenger.views;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,9 +15,15 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import firebase.hucloud.com.firemessenger.R;
 import firebase.hucloud.com.firemessenger.adapters.MessageListAdapter;
 import firebase.hucloud.com.firemessenger.models.*;
@@ -37,17 +46,15 @@ public class ChatActivity extends AppCompatActivity {
 
     @BindView(R.id.chat_rec_view)
     RecyclerView mChatRecyclerView;
-
     private MessageListAdapter messageListAdapter;
-
     private FirebaseDatabase mFirebaseDb;
-
     private DatabaseReference mChatRef;
     private DatabaseReference mChatMemeberRef;
     private DatabaseReference mChatMessageRef;
     private DatabaseReference mUserRef;
-
     private FirebaseUser mFirebaseUser;
+    private static final int TAKE_PHOTO_REQUEST_CODE = 201;
+    private StorageReference mImageStorageRef;
 
 
 
@@ -65,18 +72,7 @@ public class ChatActivity extends AppCompatActivity {
             mChatRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("chats").child(mChatId);
             mChatMessageRef = mFirebaseDb.getReference("chat_messages").child(mChatId);
             mChatMemeberRef = mFirebaseDb.getReference("chat_members").child(mChatId);
-            mChatRef.child("title").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String title = dataSnapshot.getValue(String.class);
-                    mToolbar.setTitle(title);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+            ChatFragment.JOINED_ROOM = mChatId;
             initTotalunreadCount();
         } else {
             mChatRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("chats");
@@ -84,7 +80,6 @@ public class ChatActivity extends AppCompatActivity {
         messageListAdapter = new MessageListAdapter();
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mChatRecyclerView.setAdapter(messageListAdapter);
-
     }
 
     @Override
@@ -99,6 +94,23 @@ public class ChatActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (mChatId != null) {
+
+            // 총 메세지의 카운터를 가져온다.
+            // onchildadded 호출한 변수의 값이 총메세지의 값과 크거나 같다면, 포커스를 맨아래로 내려줍니다.
+            mChatMessageRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    long totalMessageCount =  dataSnapshot.getChildrenCount();
+                    mMessageEventListener.setTotalMessageCount(totalMessageCount);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            messageListAdapter.clearItem();
+            addChatListener();
             addMessageListener();
         }
     }
@@ -107,7 +119,44 @@ public class ChatActivity extends AppCompatActivity {
         mChatRef.child("totalUnreadCount").setValue(0);
     }
 
-    ChildEventListener mMessageEventListener = new ChildEventListener() {
+    MessageEventListener mMessageEventListener = new MessageEventListener();
+
+    private void addChatListener(){
+        mChatRef.child("title").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String title = dataSnapshot.getValue(String.class);
+                if ( title != null ) {
+                    mToolbar.setTitle(title);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    private void addMessageListener(){
+        mChatMessageRef.addChildEventListener(mMessageEventListener);
+    }
+
+    private void removeMessageListener() {
+        mChatMessageRef.removeEventListener(mMessageEventListener);
+    }
+
+    private class MessageEventListener implements ChildEventListener {
+
+        private long totalMessageCount;
+
+        private long callCount = 1;
+
+        public void setTotalMessageCount(long totalMessageCount) {
+            this.totalMessageCount = totalMessageCount;
+        }
+
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -168,6 +217,12 @@ public class ChatActivity extends AppCompatActivity {
                 PhotoMessage photoMessage = dataSnapshot.getValue(PhotoMessage.class);
                 messageListAdapter.addItem(photoMessage);
             }
+
+            if ( callCount >= totalMessageCount) {
+                // 스크롤을 맨 마지막으로 내린다.
+                mChatRecyclerView.scrollToPosition(messageListAdapter.getItemCount() - 1);
+            }
+            callCount++;
         }
 
         @Override
@@ -201,15 +256,6 @@ public class ChatActivity extends AppCompatActivity {
         public void onCancelled(DatabaseError databaseError) {
 
         }
-    };
-
-
-    private void addMessageListener(){
-        mChatMessageRef.addChildEventListener(mMessageEventListener);
-    }
-
-    private void removeMessageListener() {
-        mChatMessageRef.removeEventListener(mMessageEventListener);
     }
 
 
@@ -223,6 +269,58 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.photoSend)
+    public void onPhotoSendEvent(View v) {
+        // 안드로이드 파일창 오픈 (갤러리 오픈)
+        // requestcode = 201
+        //TAKE_PHOTO_REQUEST_CODE
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, TAKE_PHOTO_REQUEST_CODE);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ( requestCode == TAKE_PHOTO_REQUEST_CODE ) {
+            if ( data != null ) {
+
+                // 업로드 이미지를 처리 합니다.
+                // 이미지 업로드가 완료된 경우
+                // 실제 web 에 업로드 된 주소를 받아서 photoUrl로 저장
+                // 그다음 포토메세지 발송
+                uploadImage(data.getData());
+
+            }
+        }
+    }
+
+    private String mPhotoUrl = null;
+    private Message.MessageType mMessageType = Message.MessageType.TEXT;
+
+    private void uploadImage(Uri data){
+        if ( mImageStorageRef == null ) {
+            mImageStorageRef = FirebaseStorage.getInstance().getReference("/chats/").child(mChatId);
+        }
+        mImageStorageRef.putFile(data).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if ( task.isSuccessful() ) {
+                    mPhotoUrl = task.getResult().getDownloadUrl().toString();
+                    mMessageType = Message.MessageType.PHOTO;
+                    sendMessage();
+                }
+            }
+        });
+        //firebase Storage
+    }
+
+
+    Message message = new Message();
     private void sendMessage(){
         // 메세지 키 생성
         mChatMessageRef = mFirebaseDb.getReference("chat_messages").child(mChatId);
@@ -230,30 +328,38 @@ public class ChatActivity extends AppCompatActivity {
         String messageId = mChatMessageRef.push().getKey();
         String messageText = mMessageText.getText().toString();
 
-        if ( messageText.isEmpty()) {
-            return;
+
+        if ( mMessageType == Message.MessageType.TEXT ) {
+            if ( messageText.isEmpty()) {
+                return;
+            }
+            message = new TextMessage();
+            ((TextMessage)message).setMessageText(messageText);
+        } else if ( mMessageType == Message.MessageType.PHOTO ){
+            message = new PhotoMessage();
+            ((PhotoMessage)message).setPhotoUrl(mPhotoUrl);
         }
 
-        final TextMessage textMessage = new TextMessage();
-        textMessage.setMessageText(messageText);
-        textMessage.setMessageDate(new Date());
-        textMessage.setChatId(mChatId);
-        textMessage.setMessageId(messageId);
-        textMessage.setMessageType(Message.MessageType.TEXT);
-        textMessage.setMessageUser(new User(mFirebaseUser.getUid(), mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString()));
-        textMessage.setReadUserList(Arrays.asList(new String[]{mFirebaseUser.getUid()}));
+        message.setMessageDate(new Date());
+        message.setChatId(mChatId);
+        message.setMessageId(messageId);
+        message.setMessageType(mMessageType);
+        message.setMessageUser(new User(mFirebaseUser.getUid(), mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString()));
+        message.setReadUserList(Arrays.asList(new String[]{mFirebaseUser.getUid()}));
+
         String [] uids = getIntent().getStringArrayExtra("uids");
         if ( uids != null ) {
-            textMessage.setUnreadCount(uids.length-1);
+            message.setUnreadCount(uids.length-1);
         }
         mMessageText.setText("");
+        mMessageType = Message.MessageType.TEXT;
         mChatMemeberRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 //unreadCount 셋팅하기 위한 대화 상대의 수를 가져 옵니다.
                 long memberCount = dataSnapshot.getChildrenCount();
-                textMessage.setUnreadCount((int)memberCount - 1);
-                mChatMessageRef.child(textMessage.getMessageId()).setValue(textMessage, new DatabaseReference.CompletionListener() {
+                message.setUnreadCount((int)memberCount - 1);
+                mChatMessageRef.child(message.getMessageId()).setValue(message, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         Iterator<DataSnapshot> memberIterator = dataSnapshot.getChildren().iterator();
@@ -264,7 +370,7 @@ public class ChatActivity extends AppCompatActivity {
                                     .child("chats")
                                     .child(mChatId)
                                     .child("lastMessage")
-                                    .setValue(textMessage);
+                                    .setValue(message);
 
                             if ( !chatMember.getUid().equals(mFirebaseUser.getUid())) {
                                 mUserRef
@@ -356,6 +462,7 @@ public class ChatActivity extends AppCompatActivity {
                                     dataSnapshot.getRef().child("chats").child(mChatId).setValue(chat);
                                     if ( !isSentMessage ) {
                                         sendMessage();
+                                        addChatListener();
                                         addMessageListener();
                                         isSentMessage = true;
                                     }

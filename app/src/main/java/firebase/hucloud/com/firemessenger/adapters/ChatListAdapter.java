@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import firebase.hucloud.com.firemessenger.R;
 import firebase.hucloud.com.firemessenger.customviews.RoundedImageView;
 import firebase.hucloud.com.firemessenger.models.Chat;
+import firebase.hucloud.com.firemessenger.models.Message;
 import firebase.hucloud.com.firemessenger.views.ChatFragment;
 
 import java.text.SimpleDateFormat;
@@ -82,9 +83,17 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatHo
 
         // chatThumbnailView
         if ( item.getLastMessage() != null ) {
-            holder.lastMessageView.setText(item.getLastMessage().getMessageText());
+
+            if ( item.getLastMessage().getMessageType() == Message.MessageType.TEXT) {
+                holder.lastMessageView.setText(item.getLastMessage().getMessageText());
+            } else if (item.getLastMessage().getMessageType() == Message.MessageType.PHOTO) {
+                holder.lastMessageView.setText("(사진)");
+            }
+
             holder.lastMessageDateView.setText(sdf.format(item.getLastMessage().getMessageDate()));
         }
+
+
         holder.titleView.setText(item.getTitle());
         holder.rootView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
