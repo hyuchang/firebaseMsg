@@ -12,17 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 import firebase.hucloud.com.firemessenger.R;
 import firebase.hucloud.com.firemessenger.adapters.ChatListAdapter;
 import firebase.hucloud.com.firemessenger.customviews.RecyclerViewItemClickListener;
-import firebase.hucloud.com.firemessenger.models.Chat;
-import firebase.hucloud.com.firemessenger.models.Message;
-import firebase.hucloud.com.firemessenger.models.Notification;
-import firebase.hucloud.com.firemessenger.models.User;
+import firebase.hucloud.com.firemessenger.models.*;
 
+import java.util.Date;
 import java.util.Iterator;
 
 public class ChatFragment extends Fragment {
@@ -32,6 +31,7 @@ public class ChatFragment extends Fragment {
     private FirebaseDatabase mFirebaseDatase;
 
     private DatabaseReference mChatRef;
+    private DatabaseReference mChatMessageRef;
 
     private DatabaseReference mChatMemberRef;
 
@@ -48,6 +48,8 @@ public class ChatFragment extends Fragment {
 
     private Context mContext;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,11 +62,12 @@ public class ChatFragment extends Fragment {
         mFirebaseDatase = FirebaseDatabase.getInstance();
         mChatRef = mFirebaseDatase.getReference("users").child(mFirebaseUser.getUid()).child("chats");
         mChatMemberRef = mFirebaseDatase.getReference("chat_members");
+        mChatMessageRef = mFirebaseDatase.getReference("chat_messages");
         mChatListAdapter = new ChatListAdapter();
         mChatListAdapter.setFragment(this);
         mChatRecyclerView.setAdapter(mChatListAdapter);
         mChatRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
         mChatRecyclerView.addOnItemTouchListener( new RecyclerViewItemClickListener(getContext(), new RecyclerViewItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -109,6 +112,9 @@ public class ChatFragment extends Fragment {
                 final Chat updatedChat = chatDataSnapshot.getValue(Chat.class);
 
                 if (updatedChat.getLastMessage() != null ) {
+                    if ( updatedChat.getLastMessage().getMessageType() == Message.MessageType.EXIT ) {
+                        return;
+                    }
                     if ( !updatedChat.getLastMessage().getMessageUser().getUid().equals(mFirebaseUser.getUid())) {
                         if ( !updatedChat.getChatId().equals(JOINED_ROOM)) {
                             // 노티피케이션 알림
@@ -120,6 +126,10 @@ public class ChatFragment extends Fragment {
                                     .setText(updatedChat.getLastMessage().getMessageText())
                                     .notification();
 
+                            Bundle bundle = new Bundle();
+                            bundle.putString("friend", updatedChat.getLastMessage().getMessageUser().getEmail());
+                            bundle.putString("me", mFirebaseUser.getEmail());
+                            mFirebaseAnalytics.logEvent("notification", bundle);
                         }
                     }
                 }
@@ -208,6 +218,7 @@ public class ChatFragment extends Fragment {
     }
 
     public void leaveChat(final Chat chat) {
+        final DatabaseReference messageRef = mFirebaseDatase.getReference("chat_messages").child(chat.getChatId());
         Snackbar.make(getView(), "선택된 대화방을 나가시겠습니까?", Snackbar.LENGTH_LONG).setAction("예", new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -216,6 +227,16 @@ public class ChatFragment extends Fragment {
                 mChatRef.child(chat.getChatId()).removeValue(new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference chatRef) {
+
+                        //exit 메세지 발송
+                        // chat_messages > {chat_id} > {message_id} >  { - 내용...~}
+
+                        final ExitMessage exitMessage = new ExitMessage();
+                        exitMessage.setMessageUser(new User(mFirebaseUser.getUid(), mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString()));
+                        exitMessage.setMessageDate(new Date());
+                        exitMessage.setChatId(chat.getChatId());
+                        messageRef.push().setValue(exitMessage);
+
                         // 채팅 멤버 목록에서 제거
                         // chat_members/{chat_id}/{user_id} 제거
                         mChatMemberRef
@@ -230,6 +251,47 @@ public class ChatFragment extends Fragment {
                                 // messages/{chat_id}
                                 // 모든 메세지를 가져온다.
                                 // 가져와서 루프를 통해서 내가 읽었는지 여부 판단.
+
+                                Bundle bundle = new Bundle();
+                                bundle.putString("me", mFirebaseUser.getEmail());
+                                bundle.putString("chatId", chat.getChatId());
+
+                                mFirebaseAnalytics.logEvent("leaveChat", bundle);
+
+                                // 채팅방의 멤버정보를 받아와서
+                                // 채팅방의 정보를 가져오고 (각각)
+                                // 그정보의 라스트 메세지를 수정해줍니다.
+
+                                mChatMemberRef
+                                    .child(chat.getChatId())
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            Iterator<DataSnapshot> chatMemberIterator = dataSnapshot.getChildren().iterator();
+
+                                            while ( chatMemberIterator.hasNext()) {
+                                                User chatMember = chatMemberIterator.next().getValue(User.class);
+
+                                                // chats -> {uid} -> {chat_id} - { ... }
+                                                mFirebaseDatase
+                                                        .getReference("users")
+                                                        .child(chatMember.getUid())
+                                                        .child("chats")
+                                                        .child(chat.getChatId())
+                                                        .child("lastMessage")
+                                                        .setValue(exitMessage);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                  });
+
+
+
+
                                 mFirebaseDatase.getReference("messages").child(chat.getChatId()).addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {

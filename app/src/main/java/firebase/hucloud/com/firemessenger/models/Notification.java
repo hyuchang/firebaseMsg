@@ -52,8 +52,6 @@ public class Notification {
             mNotificationManager.notify(1, mNotifyBuilder.build());
         } catch (Exception e){
             e.printStackTrace();
-        } finally {
-            FirebaseAnalytics.getInstance(mContext).logEvent("notificationEvt", null);
         }
     }
 

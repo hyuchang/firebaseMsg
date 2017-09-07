@@ -60,10 +60,36 @@
                     android:layout_height="wrap_content"
                     android:textSize="10dp"
                     android:textAlignment="textStart"
-                    android:text="2017-06-13\n오후 11:00"
                     android:textColor="#68747C"/>
         </LinearLayout>
     </LinearLayout>
+
+
+
+    <LinearLayout
+            android:id="@+id/exitArea"
+            android:visibility="gone"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/exitTxt"
+                android:padding="7dp"
+                android:textColor="#000"
+                android:textAlignment="center"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
     <LinearLayout
             android:id="@+id/myChatArea"
             android:padding="2dp"

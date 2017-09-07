@@ -2,310 +2,328 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-connection-10.0.1_7ffbdf5c451435732c20680e98d42cdc25955403.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-auth-10.0.1_c6f9ea498cb0c4e1ee4f66ad04220feaa23c163d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-10.0.1_3c5e9b257fc5e87d515ab9bc7f9a6c6a4786e89b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-10.0.1_060ddd7358e9dfbc884f6b58aafae16f72030863.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-10.0.1_9f8e099cf326e0a81e830cf6b0321ced2606544b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.3.1_4aeb848e33f621089221d128c54d4a8927f05f9d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-10.0.1_9e3e32406c6fc7ae86177b31ad69fd3b1201f6d3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-10.0.1_65534e3dfaf5639455fbc5740cb0b5b881c04564.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.0.0-RC1/7baec7d5132e7343100a99630a56a6584a33addc/glide-4.0.0-RC1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7baec7d5132e7343100a99630a56a6584a33addc">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/glide-4.0.0-RC1_62cd293dfd8ffca0b9acac3ef6e0ea5d6f4df0da.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/butterknife-annotations-8.5.1_31213e1ef87d00931f85a927084946c86660ac53.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.0.0-RC1/1b4bba8f8d3df8db064c875c043c01e9ca3cdee9/disklrucache-4.0.0-RC1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1b4bba8f8d3df8db064c875c043c01e9ca3cdee9">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/disklrucache-4.0.0-RC1_701141f3619e092f419e8986c60eeb69daf00db6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.3.1_9702f00845ed4416d4848edb01c25f413dbc26f7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/transition/25.3.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.3.1_71aa258fec242077e8dc7e7571360fb8e4a9dce8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.3.1_e4f0928acc3b1c0419f7fd30f0595510c2ad2510.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-10.0.1_be9f587954df9f1180390ad5c67bfa6c79f65ab6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.jakewharton-butterknife-8.5.1_a33a2dcd3d1cd05307ea952beeaed278aa345017.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.3.1_c0273a8e1923f46a6fe93c7477d7930c70e2298a.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.3.1_c0273a8e1923f46a6fe93c7477d7930c70e2298a/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.3.1_6f5f9973d56b7059f6a97f55c30f464e446ca44f.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.3.1_6f5f9973d56b7059f6a97f55c30f464e446ca44f/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/10.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-common-10.0.1_0d9773cf834a029efcf0a4dda8746f4033445b27.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/10.0.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-crash-10.0.1_66ad88ee3a613d65ac36497e0ba1e7a68cb01533.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-10.0.1_66ad88ee3a613d65ac36497e0ba1e7a68cb01533/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/10.0.1/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.3.1_791df9318bc6e2ae3d7810ac4488004c35b4aae7.jar" />
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-10.0.1_0d9773cf834a029efcf0a4dda8746f4033445b27/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/design/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.3.1_b0479944ca8ece1acb01647e8bb4708e8295ca17.jar" />
+        sha1="ead7c5539478fdf57971fe793791411e4eb97af0">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_f8db64e688973223ac2881fb61ad76ca5999d338/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.3.1_f2dc7943cedcb598881b2f29054ed30b68ec5993.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.0.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-10.0.1_040dd9e741d4a3489e7000d27f9fd611428b7854.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-10.0.1_040dd9e741d4a3489e7000d27f9fd611428b7854/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.0.0-RC1/c425e31eda1069f978a0e823ad50e567ab422656/gifdecoder-4.0.0-RC1.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="c425e31eda1069f978a0e823ad50e567ab422656">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/gifdecoder-4.0.0-RC1_11aab308964a2057e558f58b6e6e189a8fae61ec.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/gifdecoder-4.0.0-RC1_11aab308964a2057e558f58b6e6e189a8fae61ec/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/design/25.3.1/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.3.1_5bca04d76f709df801a95fdbf48b0e14c2bb8516.jar" />
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.3.1_b0479944ca8ece1acb01647e8bb4708e8295ca17/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.3.1_f2dc7943cedcb598881b2f29054ed30b68ec5993/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/10.0.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-10.0.1_1a154b14848803d6c3629f93b391cef294aeabf3.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-10.0.1_1a154b14848803d6c3629f93b391cef294aeabf3/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.0.0-RC1/84c524dcd1a3088edd5560a8ac176eae1317f770/annotations-4.0.0-RC1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="84c524dcd1a3088edd5560a8ac176eae1317f770">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/annotations-4.0.0-RC1_559bbe25cc6b613c008e7ae170ca7b9471d62fc3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/hucloud/Documents/sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_110b9a527599d2a8404e55ead28997b53b28eadb.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.3.1_089073b2c63ef4e2a7ffef2d7f62302c806a16d6.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.3.1_089073b2c63ef4e2a7ffef2d7f62302c806a16d6/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/10.0.1/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-base-10.0.1_bb6078e92488a395852d9b13534c8f1f804c6ac2.jar" />
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.3.1_5bca04d76f709df801a95fdbf48b0e14c2bb8516/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.0.0-RC1/84c524dcd1a3088edd5560a8ac176eae1317f770/annotations-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="84c524dcd1a3088edd5560a8ac176eae1317f770">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-4.0.0-RC1_559bbe25cc6b613c008e7ae170ca7b9471d62fc3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/Documents/sdk/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_110b9a527599d2a8404e55ead28997b53b28eadb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/10.0.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-10.0.1_39eb4a90e35c8cd562ec44018f9731f34aef4df6.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-10.0.1_39eb4a90e35c8cd562ec44018f9731f34aef4df6/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-10.0.1_bb6078e92488a395852d9b13534c8f1f804c6ac2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.3.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.3.1_50d4d47a66e8ccb605db338a9bbfa2a1b97ef7bf.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.3.1_50d4d47a66e8ccb605db338a9bbfa2a1b97ef7bf/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-10.0.1_6abcc8c0232debbc9686136005d5743854c65a69.jar" />
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-10.0.1_6abcc8c0232debbc9686136005d5743854c65a69/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-10.0.1_7ffbdf5c451435732c20680e98d42cdc25955403/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.3.1_4aeb848e33f621089221d128c54d4a8927f05f9d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-10.0.1_be9f587954df9f1180390ad5c67bfa6c79f65ab6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-10.0.1_060ddd7358e9dfbc884f6b58aafae16f72030863/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-10.0.1_3c5e9b257fc5e87d515ab9bc7f9a6c6a4786e89b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-10.0.1_c6f9ea498cb0c4e1ee4f66ad04220feaa23c163d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7385efbcd35c6fc886da30671e1d4e8366241bb7">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_9d1b00eac814b6afbb6ab417ff71623ebf98e3fc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-10.0.1_9f8e099cf326e0a81e830cf6b0321ced2606544b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.3.1_791df9318bc6e2ae3d7810ac4488004c35b4aae7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-10.0.1_9e3e32406c6fc7ae86177b31ad69fd3b1201f6d3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.0.0-RC1/7baec7d5132e7343100a99630a56a6584a33addc/glide-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7baec7d5132e7343100a99630a56a6584a33addc">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-4.0.0-RC1_62cd293dfd8ffca0b9acac3ef6e0ea5d6f4df0da/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.3.1_9702f00845ed4416d4848edb01c25f413dbc26f7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.0.0-RC1/1b4bba8f8d3df8db064c875c043c01e9ca3cdee9/disklrucache-4.0.0-RC1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1b4bba8f8d3df8db064c875c043c01e9ca3cdee9">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/disklrucache-4.0.0-RC1_701141f3619e092f419e8986c60eeb69daf00db6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-10.0.1_65534e3dfaf5639455fbc5740cb0b5b881c04564/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.5.1_a33a2dcd3d1cd05307ea952beeaed278aa345017/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.3.1_e4f0928acc3b1c0419f7fd30f0595510c2ad2510/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/exploded-aar/com.android.support/transition/25.3.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.3.1_71aa258fec242077e8dc7e7571360fb8e4a9dce8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/hucloud/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
+        <dex dex="/Users/hucloud/GoogleDrive/source/ideaProject/firebaseMsg/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.5.1_31213e1ef87d00931f85a927084946c86660ac53/classes.dex" />
     </item>
 
 </items>

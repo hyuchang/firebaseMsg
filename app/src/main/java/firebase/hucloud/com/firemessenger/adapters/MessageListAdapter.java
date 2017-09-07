@@ -133,6 +133,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
                 holder.rcvTextView.setVisibility(View.GONE);
                 holder.rcvImage.setVisibility(View.VISIBLE);
+            } else if ( item.getMessageType() == Message.MessageType.EXIT ) {
+                // #이름 님이 방에서 나가셨습니다.
+                holder.exitTextView.setText(String.format("%s님이 방에서 나가셨습니다.", item.getMessageUser().getName()));
             }
 
             if ( item.getUnreadCount() > 0 ) {
@@ -146,13 +149,17 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                         .with(holder.yourArea)
                         .load(item.getMessageUser().getProfileUrl())
                         .into(holder.rcvProfileView);
-
             }
 
-            holder.rcvDate.setText(messageDateFormat.format(item.getMessageDate()));
-            holder.yourArea.setVisibility(View.VISIBLE);
-            holder.sendArea.setVisibility(View.GONE);
-            // 텍스트 메세지 인지 포토 메세지 인지 구별
+            if ( item.getMessageType() == Message.MessageType.EXIT ) {
+                holder.yourArea.setVisibility(View.GONE);
+                holder.sendArea.setVisibility(View.GONE);
+                holder.exitArea.setVisibility(View.VISIBLE);
+            } else {
+                holder.rcvDate.setText(messageDateFormat.format(item.getMessageDate()));
+                holder.yourArea.setVisibility(View.VISIBLE);
+                holder.sendArea.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -169,11 +176,17 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         @BindView(R.id.myChatArea)
         LinearLayout sendArea;
 
+        @BindView(R.id.exitArea)
+        LinearLayout exitArea;
+
         @BindView(R.id.rcvProfile)
         RoundedImageView rcvProfileView;
 
         @BindView(R.id.rcvTxt)
         TextView rcvTextView;
+
+        @BindView(R.id.exitTxt)
+        TextView exitTextView;
 
         @BindView(R.id.rcvImage)
         ImageView rcvImage;

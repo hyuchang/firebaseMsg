@@ -20,7 +20,7 @@ public class Message {
 
 
     public enum MessageType {
-        TEXT, PHOTO
+        TEXT, PHOTO, EXIT
     }
 
 

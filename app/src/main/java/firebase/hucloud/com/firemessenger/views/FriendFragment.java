@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
@@ -50,6 +51,8 @@ public class FriendFragment extends Fragment {
 
     private FriendListAdapter friendListAdapter;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
 
 
     @Override
@@ -61,7 +64,7 @@ public class FriendFragment extends Fragment {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mFirebaseDb = FirebaseDatabase.getInstance();
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
         mFriendsDBRef = mFirebaseDb.getReference("users").child(mFirebaseUser.getUid()).child("friends");
         mUserDBRef = mFirebaseDb.getReference("users");
 
@@ -83,7 +86,7 @@ public class FriendFragment extends Fragment {
                         public void onClick(View view) {
                             Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
                             chatIntent.putExtra("uid", friend.getUid());
-                            startActivity(chatIntent);
+                            startActivityForResult(chatIntent, ChatFragment.JOIN_ROOM_REQUEST_CODE);
                         }
                     }).show();
                 } else {
@@ -94,7 +97,7 @@ public class FriendFragment extends Fragment {
                         public void onClick(View view) {
                             Intent chatIntent = new Intent(getActivity(), ChatActivity.class);
                             chatIntent.putExtra("uids", friendListAdapter.getSelectedUids());
-                            startActivity(chatIntent);
+                            startActivityForResult(chatIntent, ChatFragment.JOIN_ROOM_REQUEST_CODE);
                         }
                     }).show();
                 }
@@ -173,6 +176,11 @@ public class FriendFragment extends Fragment {
                                                 User user = dataSnapshot.getValue(User.class);
                                                 mUserDBRef.child(currentUser.getUid()).child("friends").push().setValue(user);
                                                 Snackbar.make(mSearchArea, "친구등록이 완료되었습니다. ", Snackbar.LENGTH_LONG).show();
+
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("me", mFirebaseUser.getEmail());
+                                                bundle.putString("friend",currentUser.getEmail());
+                                                mFirebaseAnalytics.logEvent("addFriend", bundle);
                                             }
 
                                             @Override

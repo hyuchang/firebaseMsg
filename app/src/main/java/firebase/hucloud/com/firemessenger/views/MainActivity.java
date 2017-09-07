@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.google.firebase.database.FirebaseDatabase;
 import firebase.hucloud.com.firemessenger.R;
 
 import java.util.ArrayList;
