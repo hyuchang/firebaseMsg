@@ -115,7 +115,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             holder.sendDate.setText(messageDateFormat.format(item.getMessageDate()));
             holder.yourArea.setVisibility(View.GONE);
             holder.sendArea.setVisibility(View.VISIBLE);
-
+            holder.exitArea.setVisibility(View.GONE);
 
         } else {
             // 상대방이 보낸 경우

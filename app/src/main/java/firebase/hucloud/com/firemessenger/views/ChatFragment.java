@@ -232,10 +232,13 @@ public class ChatFragment extends Fragment {
                         // chat_messages > {chat_id} > {message_id} >  { - 내용...~}
 
                         final ExitMessage exitMessage = new ExitMessage();
+                        String messageId = messageRef.push().getKey();
+
                         exitMessage.setMessageUser(new User(mFirebaseUser.getUid(), mFirebaseUser.getEmail(), mFirebaseUser.getDisplayName(), mFirebaseUser.getPhotoUrl().toString()));
                         exitMessage.setMessageDate(new Date());
+                        exitMessage.setMessageId(messageId);
                         exitMessage.setChatId(chat.getChatId());
-                        messageRef.push().setValue(exitMessage);
+                        messageRef.child(messageId).setValue(exitMessage);
 
                         // 채팅 멤버 목록에서 제거
                         // chat_members/{chat_id}/{user_id} 제거

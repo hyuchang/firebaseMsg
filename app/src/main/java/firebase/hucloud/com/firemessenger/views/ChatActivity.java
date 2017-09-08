@@ -204,7 +204,14 @@ public class ChatActivity extends AppCompatActivity {
 
                         @Override
                         public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-                            initTotalunreadCount();
+                            //0.5 초 정도 후에 언리드카운트의 값을 초기화.
+                            // Timer // TimeTask
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    initTotalunreadCount();
+                                }
+                            }, 500);
                         }
                     });
                 }
@@ -383,20 +390,22 @@ public class ChatActivity extends AppCompatActivity {
                                     .setValue(message);
 
                             if ( !chatMember.getUid().equals(mFirebaseUser.getUid())) {
+                                // 공유되는 증가카운트의 경우 transaction을 이용하여 처리합니다.
                                 mUserRef
                                     .child(chatMember.getUid())
                                     .child("chats")
                                     .child(mChatId)
                                     .child("totalUnreadCount")
-                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    .runTransaction(new Transaction.Handler() {
                                         @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            long totalUnreadCount = dataSnapshot.getValue(long.class);
-                                            dataSnapshot.getRef().setValue(totalUnreadCount+1);
-
+                                        public Transaction.Result doTransaction(MutableData mutableData) {
+                                            long totalUnreadCount = mutableData.getValue(long.class) == null ? 0 : mutableData.getValue(long.class);
+                                            mutableData.setValue(totalUnreadCount + 1);
+                                            return Transaction.success(mutableData);
                                         }
+
                                         @Override
-                                        public void onCancelled(DatabaseError databaseError) {
+                                        public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
 
                                         }
                                     });
