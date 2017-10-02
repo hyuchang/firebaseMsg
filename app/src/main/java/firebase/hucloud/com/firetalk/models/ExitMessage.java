@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.models;
+package firebase.hucloud.com.firetalk.models;
 
 public class ExitMessage  extends Message {
 

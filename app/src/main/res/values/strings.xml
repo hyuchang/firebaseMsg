@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">FireMessenger</string>
+    <string name="app_name">FirebaseTalk</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">FireTalk</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

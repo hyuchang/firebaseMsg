@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="firebase.hucloud.com.firemessenger.views.RoomFragment">
+              tools:context="firebase.hucloud.com.firetalk.views.RoomFragment">
 
     <LinearLayout
             android:id="@+id/search_area"

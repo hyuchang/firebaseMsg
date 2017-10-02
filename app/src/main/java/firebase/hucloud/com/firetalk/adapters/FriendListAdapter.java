@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.adapters;
+package firebase.hucloud.com.firetalk.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
-import firebase.hucloud.com.firemessenger.R;
-import firebase.hucloud.com.firemessenger.customviews.RoundedImageView;
-import firebase.hucloud.com.firemessenger.models.User;
+import firebase.hucloud.com.firetalk.R;
+import firebase.hucloud.com.firetalk.customviews.RoundedImageView;
+import firebase.hucloud.com.firetalk.models.User;
 
 import java.util.ArrayList;
 

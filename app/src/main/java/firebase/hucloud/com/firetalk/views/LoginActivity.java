@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.views;
+package firebase.hucloud.com.firetalk.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +15,14 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.*;
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.*;
-import firebase.hucloud.com.firemessenger.R;
-import firebase.hucloud.com.firemessenger.models.User;
+import firebase.hucloud.com.firetalk.R;
+import firebase.hucloud.com.firetalk.models.User;
 
 /**
  * A login screen that offers login via email/password.
@@ -115,57 +117,66 @@ public class LoginActivity extends AppCompatActivity {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Snackbar.make(mProgressView, "call onFailuer", Snackbar.LENGTH_LONG).show();
+                mDatabase.getReference("error/").setValue(e);
+                mDatabase.getReference("error/message").setValue(e.getMessage());
+                FirebaseCrash.report(e);
+            }
+        }).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isComplete()) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser firebaseUser = task.getResult().getUser();
-                                final User user = new User();
-                                user.setEmail(firebaseUser.getEmail());
-                                user.setName(firebaseUser.getDisplayName());
-                                user.setUid(firebaseUser.getUid());
-                                if ( firebaseUser.getPhotoUrl() != null )
-                                    user.setProfileUrl(firebaseUser.getPhotoUrl().toString());
+                if (task.isComplete()) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = task.getResult().getUser();
+                        final User user = new User();
+                        user.setEmail(firebaseUser.getEmail());
+                        user.setName(firebaseUser.getDisplayName());
+                        user.setUid(firebaseUser.getUid());
+                        if ( firebaseUser.getPhotoUrl() != null )
+                            user.setProfileUrl(firebaseUser.getPhotoUrl().toString());
 
-                                mUserRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        if ( !dataSnapshot.exists() ) {
-                                            mUserRef.child(user.getUid()).setValue(user, new DatabaseReference.CompletionListener() {
-                                                @Override
-                                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        mUserRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if ( !dataSnapshot.exists() ) {
+                                    mUserRef.child(user.getUid()).setValue(user, new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                                                    if ( databaseError == null ) {
-                                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                                        finish();
-                                                    }
-                                                }
-                                            });
-                                        } else {
-                                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                            finish();
+                                            if ( databaseError == null ) {
+                                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                finish();
+                                            }
                                         }
+                                    });
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    finish();
+                                }
 
-                                        Bundle eventBundle = new Bundle();
-                                        eventBundle.putString("email", user.getEmail());
-                                        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, eventBundle);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                            } else {
-                                Snackbar.make(mProgressView, "로그인에 실패하였습니다.", Snackbar.LENGTH_LONG).show();
+                                Bundle eventBundle = new Bundle();
+                                eventBundle.putString("email", user.getEmail());
+                                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LOGIN, eventBundle);
                             }
-                        }
 
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    } else {
+                        Snackbar.make(mProgressView, "로그인에 실패하였습니다.", Snackbar.LENGTH_LONG).show();
                     }
-                });
+                } else {
+                    Snackbar.make(mProgressView, "로그인에 실패하였습니다.", Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }
 

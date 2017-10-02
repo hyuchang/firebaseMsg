@@ -6,19 +6,18 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="5"
-        android:background="#B0C6D3"
-        tools:context="firebase.hucloud.com.firemessenger.views.ChatActivity">
+        android:background="@color/font_color"
+        tools:context="firebase.hucloud.com.firetalk.views.ChatActivity">
 
     <LinearLayout android:layout_width="match_parent"
                   android:id="@+id/chat_area"
                   android:orientation="vertical"
-                  android:layout_weight="5"
+                  android:layout_weight="1"
                   android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:background="?attr/colorPrimary"
+                android:background="@color/main_mint"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
@@ -33,22 +32,28 @@
                 android:layout_centerHorizontal="true"/>
     </LinearLayout>
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1dp"
+    android:background="#ececec">
+
+    </LinearLayout>
     <LinearLayout
-            android:layout_weight="1"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:background="@color/main_bg"
+            android:layout_height="wrap_content">
 
         <ImageView
                 android:id="@+id/photoSend"
                 android:src="@mipmap/camera_icon"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_gravity="center"
+                android:layout_width="48dp"
+                android:padding="8dp"
+                android:layout_height="48dp"/>
 
         <EditText
                 android:id="@+id/edtContent"
-                android:padding="5dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:layout_weight="8"
                 android:background="#fff"
                 android:layout_width="0dp"
@@ -58,14 +63,14 @@
                 android:layout_height="match_parent"/>
 
         <ImageView
-                android:padding="5dp"
                 android:id="@+id/senderBtn"
-                android:layout_weight="1"
                 android:src="@mipmap/send_message"
-                android:layout_width="0dp"
+                android:layout_width="48dp"
+                android:padding="8dp"
+                android:layout_gravity="center"
                 android:enabled="false"
                 android:clickable="true"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
         />
     </LinearLayout>
 

@@ -3,6 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
+
+    <!-- 상대방-->
     <LinearLayout
             android:id="@+id/yourChatArea"
             android:visibility="gone"
@@ -10,7 +12,7 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <firebase.hucloud.com.firemessenger.customviews.RoundedImageView
+        <firebase.hucloud.com.firetalk.customviews.RoundedImageView
                 android:id="@+id/rcvProfile"
                 android:src="@mipmap/ic_launcher"
                 android:layout_width="50dp"
@@ -65,7 +67,7 @@
     </LinearLayout>
 
 
-
+    <!-- 방 나갈을-->
     <LinearLayout
             android:id="@+id/exitArea"
             android:visibility="gone"
@@ -89,6 +91,7 @@
     </LinearLayout>
 
 
+    <!-- 내가 ㅆㄴ글-->
 
     <LinearLayout
             android:id="@+id/myChatArea"

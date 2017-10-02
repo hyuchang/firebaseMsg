@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.views;
+package firebase.hucloud.com.firetalk.views;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,9 +24,9 @@ import com.google.firebase.database.*;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import firebase.hucloud.com.firemessenger.R;
-import firebase.hucloud.com.firemessenger.adapters.MessageListAdapter;
-import firebase.hucloud.com.firemessenger.models.*;
+import firebase.hucloud.com.firetalk.R;
+import firebase.hucloud.com.firetalk.adapters.MessageListAdapter;
+import firebase.hucloud.com.firetalk.models.*;
 
 import java.util.*;
 
@@ -347,7 +347,7 @@ public class ChatActivity extends AppCompatActivity {
                 return;
             }
             message = new TextMessage();
-            ((TextMessage)message).setMessageText(messageText);
+            ((TextMessage)message).setMessageText(messageText.trim());
             bundle.putString("messageType", Message.MessageType.TEXT.toString());
         } else if ( mMessageType == Message.MessageType.PHOTO ){
             message = new PhotoMessage();

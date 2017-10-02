@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.customviews;
+package firebase.hucloud.com.firetalk.customviews;
 
 import android.content.Context;
 import android.graphics.*;

@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.views;
+package firebase.hucloud.com.firetalk.views;
 
 
 import android.content.Intent;
@@ -19,10 +19,10 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
-import firebase.hucloud.com.firemessenger.R;
-import firebase.hucloud.com.firemessenger.adapters.FriendListAdapter;
-import firebase.hucloud.com.firemessenger.customviews.RecyclerViewItemClickListener;
-import firebase.hucloud.com.firemessenger.models.User;
+import firebase.hucloud.com.firetalk.R;
+import firebase.hucloud.com.firetalk.adapters.FriendListAdapter;
+import firebase.hucloud.com.firetalk.customviews.RecyclerViewItemClickListener;
+import firebase.hucloud.com.firetalk.models.User;
 
 import java.util.Iterator;
 
@@ -109,6 +109,7 @@ public class FriendFragment extends Fragment {
     }
 
     public void toggleSearchBar(){
+        if (mSearchArea == null) return;
         mSearchArea.setVisibility( mSearchArea.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE );
     }
 

@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.views;
+package firebase.hucloud.com.firetalk.views;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -12,7 +12,7 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.firebase.database.FirebaseDatabase;
-import firebase.hucloud.com.firemessenger.R;
+import firebase.hucloud.com.firetalk.R;
 
 import java.util.ArrayList;
 import java.util.List;

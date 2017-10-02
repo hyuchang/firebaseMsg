@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.models;
+package firebase.hucloud.com.firetalk.models;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import firebase.hucloud.com.firemessenger.R;
+import firebase.hucloud.com.firetalk.R;
 
 public class Notification {
 

@@ -1,4 +1,4 @@
-package firebase.hucloud.com.firemessenger.adapters;
+package firebase.hucloud.com.firetalk.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,11 +8,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import firebase.hucloud.com.firemessenger.R;
-import firebase.hucloud.com.firemessenger.customviews.RoundedImageView;
-import firebase.hucloud.com.firemessenger.models.Chat;
-import firebase.hucloud.com.firemessenger.models.Message;
-import firebase.hucloud.com.firemessenger.views.ChatFragment;
+import firebase.hucloud.com.firetalk.R;
+import firebase.hucloud.com.firetalk.customviews.RoundedImageView;
+import firebase.hucloud.com.firetalk.models.Chat;
+import firebase.hucloud.com.firetalk.models.Message;
+import firebase.hucloud.com.firetalk.views.ChatFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -107,10 +107,13 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatHo
             }
         });
 
-        if (item.getTotalUnreadCount() > 0 )
+        if (item.getTotalUnreadCount() > 0 ){
             holder.totalUnreadCountView.setText(String.valueOf(item.getTotalUnreadCount()));
-        else
+            holder.totalUnreadCountView.setVisibility(View.VISIBLE);
+        } else {
+            holder.totalUnreadCountView.setVisibility(View.GONE);
             holder.totalUnreadCountView.setText("");
+        }
     }
 
     @Override

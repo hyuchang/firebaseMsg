@@ -1,27 +1,43 @@
 {
   "project_info": {
-    "project_number": "400155996933",
-    "firebase_url": "https://firemessenger-e5bb1.firebaseio.com",
-    "project_id": "firemessenger-e5bb1",
-    "storage_bucket": "firemessenger-e5bb1.appspot.com"
+    "project_number": "808079674513",
+    "firebase_url": "https://firetalk-70f09.firebaseio.com",
+    "project_id": "firetalk-70f09",
+    "storage_bucket": "firetalk-70f09.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:400155996933:android:539498313c3dba85",
+        "mobilesdk_app_id": "1:808079674513:android:4804e8af8abb23ec",
         "android_client_info": {
-          "package_name": "firebase.hucloud.com.firemessenger"
+          "package_name": "firebase.hucloud.com.firetalk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "400155996933-obsnf6t1alcrop0ovku522cutb48ouam.apps.googleusercontent.com",
+          "client_id": "808079674513-93vcume3r19s149ien79aha1kgrj2q7d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "firebase.hucloud.com.firetalk",
+            "certificate_hash": "5bd4b04af4cf3edd18e2bf97ed9f172b9e815a29"
+          }
+        },
+        {
+          "client_id": "808079674513-0iu23r2tr3fi2faedtiueemt145kqqmc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "firebase.hucloud.com.firetalk",
+            "certificate_hash": "86155342b230b14e8ebdd8c7cca88eb787435c98"
+          }
+        },
+        {
+          "client_id": "808079674513-v8colisu1ussa9ddepct4n86c42qkh1g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBLjdS2G8XP9py0hreYWElXcxtUxQJqWic"
+          "current_key": "AIzaSyCkLAj5YzbcepuMMMH5MPeB7N3Y9QEaFb8"
         }
       ],
       "services": {
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808079674513-v8colisu1ussa9ddepct4n86c42qkh1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

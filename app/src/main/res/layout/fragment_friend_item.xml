@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"/>
 
 
-    <firebase.hucloud.com.firemessenger.customviews.RoundedImageView
+    <firebase.hucloud.com.firetalk.customviews.RoundedImageView
             android:id="@+id/thumb"
             android:layout_width="50dp"
             android:layout_height="50dp"
