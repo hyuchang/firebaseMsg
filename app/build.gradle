@@ -16,9 +16,9 @@ android {
     signingConfigs {
         release {
             storeFile file('../certfication/firebase-msg-cert.keystore')
-            storePassword 'wva24d8g'
+            storePassword '암호'
             keyAlias 'firebase-talk'
-            keyPassword 'wva24d8g'
+            keyPassword '암호'
         }
     }
     buildTypes {
